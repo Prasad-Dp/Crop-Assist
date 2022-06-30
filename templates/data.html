@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <style>
+            .nav-link1{
+                text-decoration: none;
+                color: black;
+                font-size: 30px;
+                margin-left: 80%;
+            }
+            a:hover{
+                color: orangered;
+            }
+        </style>
+    </head>
+    <body>
+        <a class="nav-link1" href="{{ url_for('home') }}">LogOut</a>
+        <h1> Crop Recommended Data</h1>
+        <table>
+            <h1>
+                {% for table in tables %}
+                <h2>{{titles[loop.index]}}</h2>
+                {{table | safe}} {% endfor %}
+            </h1>
+        </table>
+    </body>
+</html>

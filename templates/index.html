@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>CROP</title>
+        <style>
+            body{
+                background-image:url("../static/images/home.jpg");
+                background-repeat:no-repeat;
+                background-size:100%,100%;
+            }
+            .url_links{
+                height: 10%;
+                width: 35%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-120%,-80%);
+                
+                justify-content: center;
+                border-radius: 10px;
+                align-items: center;
+                background: transparent;
+            }
+            .nav-link{
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                font-size: 45px;
+                color: black;
+                font-family: 'Courier New', Courier, monospace;
+                margin-left: 29%;
+                text-align: center;
+            }
+             a:hover{
+                color: orangered;
+                font-size: 30px;
+            }
+            .text{
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                font-size: 20px;
+                color: black;
+                font-family: 'Courier New', Courier, monospace; 
+                text-align: center;
+                font-weight: bold;
+            }
+            h1{
+                text-align: center;
+                color: black;
+                margin-top: 25px;
+                margin-left: 60px;
+                width: 40%;
+                
+            }
+            .nav_home{
+                height: 10%;
+                width: 25%;
+                display: flex;
+                position: absolute;
+                transform: translate(290%,-120%);
+
+            }
+            .nav-link1{
+                text-decoration: none;
+                font-size: 30px;
+                margin: 15px;
+                padding: 20px;
+                color: black;
+            }
+        </style>
+    <body>
+        <h1>Crop Assist Using Mechine Learing</h1>
+        <div class="url_links">
+            <p class="text">This website designed for Predecect the best<br> crop for your soil nutrients and climate conditions</p>
+            <a class="nav-link" href="{{ url_for('user_log') }}">Login</a><br>
+        </div>
+        <div class="nav_home">
+            <a class="nav-link1" href="{{ url_for('user_reg') }}">SignUp</a>
+            <a class="nav-link1" href="{{ url_for('admin_login') }}">Report</a>
+        </div>
+
+    </body>
+</html>

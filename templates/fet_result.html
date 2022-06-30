@@ -1,0 +1,89 @@
+<html>
+<head>
+  <link rel="stylesheet" href="../static/css/mycs.css">
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+       .details{
+         height:25%;
+         width: 100%;
+         text-align: center;
+         background-color: #5cdb95;
+         border-radius: 10px;
+         margin-top: 10px;
+       }
+       .details h1{
+         margin-top: 10px;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         color: white;
+       }
+       .details a{
+         text-decoration: none;
+         font-size: 25px;
+         color: white;
+         animation: blinker 2s linear infinite;
+         padding-top: 20px;
+         margin-top: 20px;
+       }
+       .details1{
+         margin-top: 20px;
+         height:60%;
+         width: 100%;
+         background-color: #5cdb95;
+         border-radius: 10px;
+         padding-left: 2%;
+         padding-right: 1%;
+         padding-top: 2%;
+       }
+       .details1 h1{
+         margin-top: 10px;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         color: white;
+       }
+       .details1 a{
+         text-align: center;
+         text-decoration: none;
+         font-size: 25px;
+         color: white;
+         animation: blinker 2s linear infinite;
+         padding-top: 20px;
+         margin-top: 20px;
+       }
+       @keyframes blinker{
+         50%{
+           opacity: 0;
+         }
+       }
+    </style>
+</head>
+<body>
+  <div class="menu-bar">
+    <ul>
+        <li ><a class="nav-link" href="{{ url_for('main_home') }}">Home</a></li>
+        <li><a class="nav-link" href="{{ url_for('user_info') }}">Crop Recommendation</a></li>
+        <li><a class="nav-link" href="{{ url_for('fetrilizer') }}">Fetrilizer Recommendation</a></li>
+        <li><a class="nav-link" href="{{ url_for('alg_analysis') }}">Ml Models</a>
+        <div class="sub-menu-1">
+            <ul>
+                <li><a class="nav-link" href="{{ url_for('random_forest') }}">Random Forest</a></li>
+                <li><a class="nav-link" href="{{ url_for('deceision_tree') }}">Decesion Tree</a></li>
+                <li><a class="nav-link" href="{{ url_for('svm') }}">SVM</a></li>
+                <li><a class="nav-link" href="{{ url_for('model_report') }}">Models report</a></li>
+            </ul>
+        </div>
+        </li>
+        <li><a class="nav-link" href="{{ url_for('alg_analysis') }}">Seasional Crops</a>
+        
+        </li>
+        <li><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+</div>
+  <div class="details1">
+    <a href="{{ url_for('streamwav1') }}" target="_blank">click hear to Listen</a>
+    <p class="text-center" style="color: black; font-size: 20px;">{{ fetrilizer }}</p>
+  </div>
+</body>
+</html>

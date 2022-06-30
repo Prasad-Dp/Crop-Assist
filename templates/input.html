@@ -1,0 +1,178 @@
+<html>
+<head>
+    <title>CROP</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .inner{
+        height: 80%;
+        width: 30%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-130%,-58%);
+      
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
+        
+        
+      }
+      .details{
+        width: 100%;
+        height: 100%;
+        
+        padding-left: 19%;
+        padding-right: 19%;
+        padding-top: 10px;
+        border-radius: 0px 10px 10px 0px;
+      }
+      .details h1{
+        color: #ffff;
+        padding: 10px 0;
+        margin-top: 10px;
+        font-weight: 900;
+      
+      }
+      input{
+        width: 98%;
+        border-radius: 30px;
+        border:none;
+        height: 3em;
+        font-size: 15px;
+        padding: 0 10px;
+        align-items: center;
+      }
+      .action-btn{
+        width: 100%;
+        display: flex;
+        margin: 10px 0;
+      }
+      .btn{
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 10px;
+        background: transparent;
+        border-radius: 20px;
+        width: 50%;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .primary{
+        border: none;
+        background: linear-gradient(45deg, rgba(222,197,5,1) 24%, rgba(255,107,0,1) 100%);
+      }
+      .mic{
+        background-image: url('../static/images/mic1.png') !important;
+        background-repeat: no-repeat;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        border: none;
+        padding-right: 5px;
+        background-color: #fff;
+      }
+      .mic:hover{
+        width: 31px;
+        height: 31px;
+      }
+      .v_input{
+        width: 100%;
+        display: flex;
+        background-color: #fff;
+        margin-bottom: 25px;
+        align-items: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-radius: 30px;
+        height: fit-content;
+      }
+      .no_out{
+        border: none;
+      }
+      .no_out:focus{
+        outline: none;
+      }
+      .no_out:hover{
+        width: 115%;
+      }
+
+    </style>
+</head>
+<body>
+  <div class="outer">
+    <img src="..\static\images\plant1.jpg" height="100%" width="100%">
+  </div>
+  <div class="inner">
+
+    <div class="details">
+      <h1>Enter Details</h1>
+      <form method="POST" action="{{ url_for('crop_prediction') }}">
+        <div class="v_input">
+          <input type="number" class="no_out" id="Nitrogen" name="nitrogen"  placeholder="Nitrogen Value range 1-140" required min="1" max="140">
+          <button onclick="startDictation('Nitrogen','n')" class="mic" id="n"></button>
+        </div>
+
+        <div class="v_input">
+          <input type="number" class="no_out" id="Phosphorous" name="phosphorous"  placeholder="Phosphorous Value range 1-150" required min="1" max="150">
+          <button onclick="startDictation('Phosphorous','p')" class="mic" id="p"></button>
+        </div>
+
+        <div class="v_input">
+          <input type="number" class="no_out" id="Potassium" name="potassium"  placeholder="Potassium Value range 5-210" required min="5" max="210">
+          <button onclick="startDictation('Potassium','k')" class="mic" id="k"></button>
+        </div>
+
+        <div class="v_input">
+          <input type="number" class="no_out" id="Ph" name="ph"  placeholder="ph Value range 3-10" required min="3" max="10">
+          <button onclick="startDictation('Ph','pw')" class="mic" id="pw"></button>
+        </div>
+
+        <div class="v_input">
+          <input type="number" class="no_out" id="Rainfall" name="rainfall"  placeholder="Rainfall Value range 20-300" required min="20" max="300">
+          <button onclick="startDictation('Rainfall','r')" class="mic" id="r"></button>
+        </div>
+
+        <div class="v_input">
+          <input type="number" class="no_out" id="Temperature" name="temperature"  placeholder="Temperature Value range 5-45" required min="5" max="45">
+          <button onclick="startDictation('Temperature','t')" class="mic" id="t"></button>
+        </div>
+
+        <div class="v_input">
+          <input type="number" class="no_out" id="Humidity" name="humidity" placeholder="Humidity Value range 10-100" required min="10" max="100">
+          <button onclick="startDictation('Humidity','h')" class="mic" id="h"></button>
+        </div>
+
+        <div class="action-btn">
+          <input type="submit" value="Predect" class="btn primary">
+          <input type="reset" value="Clear" class="btn">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+<script>
+    
+  function startDictation(x,y) {
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.lang = "en-Us";
+    recognition.start();
+    var a=document.getElementById(y)
+    a.style.backgroundColor="#ff0000"
+    recognition.onresult = function(e) {
+      document.getElementById(x).value =e.results[0][0].transcript;  
+      recognition.stop();
+      a.style.backgroundColor="#ffffff"
+    };
+  }
+ </script>
+</html>

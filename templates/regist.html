@@ -1,0 +1,177 @@
+<html>
+<head>
+<style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .inner{
+        height: 75%;
+        width: 30%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        box-shadow: 10px 10px 68px -12px rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
+        
+
+      }
+      .details{
+        width: 100%;
+        height: 100%;
+        padding-left: 19%;
+        padding-right: 19%;
+        padding-top: 10px;
+        border-radius: 0px 10px 10px 0px;
+      }
+      .details h1{
+        color: rgb(255, 255, 255);
+        padding: 10px 0;
+        margin: 5px 10px;
+        font-weight: 900;
+
+      }
+      
+      input{
+        width: 98%;
+        border-radius: 30px;
+        border: none;
+        height: 3em;
+        font-size: 15px;
+        padding: 0 10px;
+        align-items: center;
+      }
+      .primary{
+        margin-left: 22%;
+        margin-top: 6%;
+        border: none;
+        width: 50%;
+        background: linear-gradient(45deg, rgba(222,197,5,1) 24%, rgba(255,107,0,1) 100%);
+      }
+      .mic{
+        background-image: url('../static/images/mic1.png') !important;
+        background-size: contain;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: none;
+        background-repeat: no-repeat;
+        padding-right: 5px;
+      }
+      .mic:hover{
+        width: 31px;
+        height: 31px;
+      }
+      .v_input{
+        width: 100%;
+        display: flex;
+        background-color: #fff;
+        margin-bottom: 25px;
+        align-items: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        border-radius: 30px;
+        height: fit-content;
+      }
+      .no_out{
+        border: none;
+      }
+      .no_out:focus{
+        outline: none;
+      }
+      .no_out:hover{
+        width: 115%;
+      }
+      .nav_home{
+                display: flex;
+                position: absolute;
+                transform: translate(200%,-90%);
+
+            }
+            .nav-link1{
+                text-decoration: none;
+                font-size: 30px;
+                margin: 15px;
+                padding: 20px;
+                color: #fff;
+            }
+            a:hover{
+                color: orangered;
+                font-size: 30px;
+            }
+            p{
+              color: #fff;
+            }
+</style>
+</head>
+<body>
+  <div class="outer">
+    <img src="../static/images/login_bg.jpg" height="100%" width="100%">
+  </div>
+<div class="inner">
+
+    <div class="details">
+      {% if error %}  
+      <p><strong>Error</strong>: {{error}}</p>  
+      {% endif %}
+            <h1>Enter User Details</h1>
+           <form method="POST" action="{{ url_for('user_registration') }}">
+             <div class="v_input">
+                <input type="text" class="no_out" id="Name" name="r_name"  placeholder="Your Name" required minlength="2">
+                <button onclick="startDictation('Name','n')" class="mic" id="n"></button>
+             </div>
+
+             <div class="v_input">
+               <input type="email" class="no_out" id="existing_crop" name="eemail"  placeholder="Email" required minlength="2">
+               <button onclick="startDictation('existing_crop','e')" class="mic" id="e"></button>
+             </div>
+
+             <div class="v_input">
+               <input type="number" class="no_out" id="City" name="mobile"  placeholder="Mobile number">
+               <button onclick="startDictation('City','c')" class="mic" id="c"></button>
+             </div>
+
+             <div class="v_input">
+               <input type="text" class="no_out" id="Area" name="u_name"  placeholder="User Name" required minlength="3">
+               <button onclick="startDictation('Area','a')" class="mic" id="a"></button>
+             </div>
+
+             <div class="v_input">
+               <input type="password" class="no_out" id="State" name="pass"  placeholder="password" required minlength="3">
+               <button onclick="startDictation('State','s')" class="mic" id="s"></button>
+             </div>
+              <input type="submit" value="Register" class="btn primary">
+           </form>
+    </div>
+    <div class="nav_home">
+      <a class="nav-link1" href="{{ url_for('home') }}">Home</a>
+      <a class="nav-link1" href="{{ url_for('user_log') }}">Login</a>
+    </div>
+</div>
+</body>
+<script>
+    
+  function startDictation(x,y) {
+    var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+    var recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.lang = "en-Us";
+    recognition.start();
+    var a=document.getElementById(y)
+    a.style.backgroundColor="#ff0000"
+    recognition.onresult = function(e) {
+      document.getElementById(x).value =e.results[0][0].transcript;  
+      recognition.stop();
+      a.style.backgroundColor="#ffffff" 
+    };
+  }
+ </script>
+</html>

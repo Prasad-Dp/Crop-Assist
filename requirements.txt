@@ -1,0 +1,12 @@
+numpy
+pandas
+Flask
+scikit-learn
+https://download.pytorch.org/whl/cpu/torch-1.7.0%2Bcpu-cp36-cp36m-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torchvision-0.8.1%2Bcpu-cp36-cp36m-linux_x86_64.whl
+requests
+Pillow
+gunicorn == 20.0.4
+mysql-connector-python
+
+create table crop_data(N float, P float, K float, temperature float, humidity float, ph float, rainfall float, crop_recommended varchar(30),Existing_Crop varchar(30),user_name varchar(30),area varchar(20),city varchar(20),state varchar(20),pincode numeric);

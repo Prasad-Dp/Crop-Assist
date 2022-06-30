@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/css/mystyle.css">
+        <style>
+            .c_name{
+                margin-left: 40%;
+                margin-top: 20%;
+                text-align: center;
+            }
+            .c_name h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="menu-bar">
+            <ul>
+                <li ><a class="nav-link" href="{{ url_for('main_home') }}">Home</a></li>
+                <li><a class="nav-link" href="{{ url_for('user_info') }}">Crop Recommendation</a></li>
+                <li><a class="nav-link" href="{{ url_for('fetrilizer') }}">Fetrilizer Recommendation</a></li>
+                <li><a class="nav-link" href="{{ url_for('alg_analysis') }}">Ml Models</a>
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a class="nav-link" href="{{ url_for('random_forest') }}">Random Forest</a></li>
+                        <li><a class="nav-link" href="{{ url_for('deceision_tree') }}">Decesion Tree</a></li>
+                        <li><a class="nav-link" href="{{ url_for('svm') }}">SVM</a></li>
+                        <li><a class="nav-link" href="{{ url_for('model_report') }}">Models report</a></li>
+                    </ul>
+                </div>
+                </li>
+                <li><a class="nav-link" href="{{ url_for('alg_analysis') }}">Seasional Crops</a>
+                </li>
+                <li><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        <div class="c_name">
+            <h1>Welcome <br/>{{ final_name_u }}</h1>
+        </div>
+        
+    </body>
+</html>
